@@ -1,0 +1,8 @@
+name: ItemCleaner
+author: pongy20
+version: 1.0
+main: de.pongy.itemcleaner.ItemCleaner
+commands:
+  itemcleaner:
+    aliases: [ic]
+    description: cleans the items in a specific world
