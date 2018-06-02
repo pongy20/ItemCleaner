@@ -38,7 +38,7 @@ public class ItemCleaner extends JavaPlugin implements CommandExecutor {
 		getConfig().options().copyDefaults(true);
 		getConfig().addDefault("interval", 60);
 		getConfig().addDefault("prefix", "&cIC &8:");
-		getConfig().addDefault("message", "&0 items on ground have been cleared!");
+		getConfig().addDefault("message", "&0 items on ground have been removed!");
 		getConfig().addDefault("messagePlayers", true);
 		ArrayList<String> SavedWorlds = new ArrayList<>();
 		SavedWorlds.add(Bukkit.createWorld(new WorldCreator("world")).getName());
@@ -92,17 +92,18 @@ public class ItemCleaner extends JavaPlugin implements CommandExecutor {
 		if (args.length == 0) {
 			if (sender instanceof Player) {
 				Player p = (Player) sender;
-				if (p.hasPermission("itemcleaner.clean")) {
+				if (p.hasPermission("itemcleaner.remove")) {
 					clearWorld(p.getWorld());
-					p.sendMessage(ChatColor.BLUE + "Items have been cleared in World " + p.getWorld());
+					p.sendMessage(ChatColor.BLUE + "Items have been removed in World " + p.getWorld());
 				}
 			}
 		} else if (args.length == 1) {
+			if (sender.hasPermission("itemcleaner.remove"))
 			if (args[0].equalsIgnoreCase("all")) {
 				for (World w : worlds) {
 					clearWorld(w);
 				}
-				sender.sendMessage(ChatColor.RED + "All worlds have been cleared!");
+				sender.sendMessage(ChatColor.RED + "All worlds have been removed!");
 			}
 		} else {
 			sender.sendMessage("Syntax error!");
